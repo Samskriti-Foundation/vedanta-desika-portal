@@ -1,0 +1,25 @@
+{% macro navbar() -%}
+<nav>
+  <div class="flex justify-between items-center max-w-7xl mx-auto">
+    <div>
+      <img
+        src="{{ url_for('static', filename='images/logo.png') }}"
+        alt="logo"
+      />
+    </div>
+    <div class="text-[#170F49] font-semibold flex gap-2">
+      <a href="#"> Home </a>
+      <a href="#"> About </a>
+      <a href="#"> Contacts </a>
+    </div>
+  </div>
+</nav>
+{%- endmacro %} {% macro header() -%}
+<div>
+  <img
+    class="w-full h-[100px]"
+    src="{{ url_for('static', filename='images/header.png') }}"
+    alt="header"
+  />
+</div>
+{%- endmacro %}
