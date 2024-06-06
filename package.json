@@ -1,0 +1,10 @@
+{
+  "name": "vedanta-desika",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Pranav K Bhaskar <pkb19032002@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  }
+}
