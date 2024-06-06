@@ -62,7 +62,7 @@ To get started with the Vedanta Desika Portal, follow these steps:
    pip install -r requirements.txt
    ```
    
-4.  **Install Dependencies:**
+4.  **Install frontend dependencies:**
 
     a. Install yarn if not already installed
 
@@ -76,7 +76,7 @@ To get started with the Vedanta Desika Portal, follow these steps:
       yarn install
       ```
 
-## Run the backend server
+## Run the server
 
 1. Navigate to app directory
 
