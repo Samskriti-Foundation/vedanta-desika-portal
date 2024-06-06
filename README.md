@@ -21,7 +21,7 @@ To get started with the Vedanta Desika Portal, follow these steps:
 
 ### Prerequisites
 
-- Python 3.12
+- Python 3.10 or higher
 - Node.js and yarn
 - Git
 
