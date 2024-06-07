@@ -25,6 +25,12 @@
     <title>Vedanta Desika</title>
   </head>
   <body class="h-screen bg-gradient-to-r from-[#FFBBA4] to-[#FFECCE] to-73%">
-    {{macros.navbar()}} {% block content %} {{ macros.header() }} {% endblock %}
+    {{macros.navbar()}}
+    <!--  -->
+    {% block content %}
+    <!--  -->
+    {{macros.header("Vedanta Desika from base")}}
+    <!--  -->
+    {% endblock %}
   </body>
 </html>

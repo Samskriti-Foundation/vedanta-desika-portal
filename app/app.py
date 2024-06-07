@@ -1,7 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask
+from .routes import home, admin
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return render_template("layouts/base.html")
+app.register_blueprint(home.home_bp)
+app.register_blueprint(admin.admin_bp)

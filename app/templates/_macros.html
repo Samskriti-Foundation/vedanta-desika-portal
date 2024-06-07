@@ -10,16 +10,23 @@
     <div class="text-[#170F49] font-semibold flex gap-2">
       <a href="#"> Home </a>
       <a href="#"> About </a>
-      <a href="#"> Contacts </a>
     </div>
   </div>
 </nav>
-{%- endmacro %} {% macro header() -%}
-<div>
+{%- endmacro %}
+
+<!--  -->
+{% macro header(title) -%}
+<div class="relative ext-center text-white">
   <img
-    class="w-full h-[100px]"
+    class="w-full h-[100px] bg-gradient-to-r from-[#FFBBA4] from-9 % via-[#C9E3BC] via-42% via-[#CDD28D] via-83% to-[#C7E9CB]"
     src="{{ url_for('static', filename='images/header.png') }}"
     alt="header"
+  />
+  <img
+    src="{{ url_for('static', filename='images/title.png') }}"
+    alt="title"
+    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-[800px] h-[90px] text-lg"
   />
 </div>
 {%- endmacro %}
