@@ -4,6 +4,16 @@
 <!--  -->
 {% block content %}
 <!--  -->
-{{ macros.header("Vedanta Desika from admin") }}
+{{ macros.header("title_admin") }}
+<!--  -->
+{% if authenticated %}
+<!--  -->
+{% include "pages/admin/_partials/admin.html" %}
+<!--  -->
+{% else %}
+<!--  -->
+{% include "pages/admin/_partials/login.html" %}
+<!--  -->
+{% endif %}
 <!--  -->
 {%endblock%}
