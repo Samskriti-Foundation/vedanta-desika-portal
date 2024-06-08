@@ -21,8 +21,9 @@ def add_node():
             db.session.add(Node(
                 left=1,
                 right=2,
-                name=data.get("name")
+                name=data["name"],
             ))
+            db.session.commit()
             
             return jsonify({"message": "Root node created successfully"}), 201
             
@@ -38,7 +39,20 @@ def add_node():
         }), 400
     
     parent_node = db.session.query(Node).filter_by(id=data["parent_id"]).first()
+    
+    db.session.query(Node).filter(Node.right > parent_node.left).update({Node.right: Node.right + 2}, synchronize_session=False)
+    db.session.query(Node).filter(Node.left > parent_node.left).update({Node.left: Node.left + 2}, synchronize_session=False)
 
+    new_node = Node(
+        name=data["name"],
+        left=parent_node.left + 1,
+        right=parent_node.left + 2,
+    )
+    
+    db.session.add(new_node)
+    db.session.commit()
+    
+    return jsonify({"message": "Node created successfully"}), 201
 
 @nodes_bp.route("/tree", methods=["GET"])
 def build_tree():
