@@ -3,11 +3,15 @@ from app.extensions import db
 from app.models import Node
 from app.schemas import node_input_schema
 
-nodes_bp = Blueprint("nodes", __name__, url_prefix="/api/nodes")
+nodes_bp = Blueprint("nodes", __name__, url_prefix="/nodes")
 
 
-@nodes_bp.route("/", methods=["POST"])
+@nodes_bp.route("/add", methods=["GET"])
 def add_node():
+    return ""
+
+@nodes_bp.route("/add", methods=["POST"])
+def add_node_1():
     data = request.get_json()
     
     errors = node_input_schema.validate(data)

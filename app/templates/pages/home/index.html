@@ -1,47 +1,52 @@
-{% extends "layouts/base.html" %}
-<!--  -->
-{% import "_macros.html" as macros %}
-<!--  -->
-{% block content %}
-<!--  -->
-{{ macros.header("title") }}
-<!--  -->
+{% extends "layouts/base.html" %} {% import "_macros.html" as macros %} {% block
+content %} {{ macros.header("title") }}
+
 <div class="flex justify-end px-2 py-4 pr-10 gap-2 items-center">
   <p class="pr-2 font-semibold">Change View:</p>
   <div class="flex gap-2">
-    <a href="/?view=horizontal">
+    <button
+      hx-get="/tree/horizontal"
+      hx-target="#tree-content"
+      hx-swap="outerHTML"
+      hx-indicator=".loading"
+      hx-trigger="click"
+    >
       <img
         src="{{ url_for('static', filename='images/unfold-horizontal.svg') }}"
         alt="horizontal"
         class="bg-[#F9856F] p-1 rounded"
       />
-    </a>
-    <a href="/?view=vertical">
+    </button>
+    <button
+      hx-get="/tree/vertical"
+      hx-target="#tree-content"
+      hx-swap="outerHTML"
+      hx-indicator=".loading"
+    >
       <img
         src="{{ url_for('static', filename='images/unfold-vertical.svg') }}"
         alt="vertical"
         class="bg-[#F9856F] p-1 rounded"
       />
-    </a>
-    <a href="/?view=list">
+    </button>
+    <button
+      hx-get="/tree/list"
+      hx-target="#tree-content"
+      hx-swap="outerHTML"
+      hx-indicator=".loading"
+    >
       <img
         src="{{ url_for('static', filename='images/folder-tree.svg') }}"
         alt="list"
         class="bg-[#F9856F] p-1 rounded"
       />
-    </a>
+    </button>
   </div>
 </div>
-
-{% if view == "horizontal" %}
-<!--  -->
-{% include "pages/home/_partials/horizontal_tree.html" %} {% elif view ==
-"vertical" %}
-<!--  -->
-{% include "pages/home/_partials/vertical_tree.html" %} {% else %}
-<!--  -->
-{% include "pages/home/_partials/list.html" %}
-<!--  -->
-{% endif %}
-<!--  -->
-{%endblock%}
+<div
+  id="tree-content"
+  hx-get="/tree/horizontal"
+  hx-swap="outerHTML"
+  hx-trigger="load"
+></div>
+{% endblock %}

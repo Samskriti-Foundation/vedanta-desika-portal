@@ -1,22 +1,21 @@
-<style>
-  .node circle {
-    fill: #f9856f;
-    stroke: #f54818;
-    stroke-width: 3px;
-  }
+<div id="tree-content">
+  <style>
+    .node circle {
+      fill: #f9856f;
+      stroke: #f54818;
+      stroke-width: 3px;
+    }
 
-  .node text {
-    font: 12px sans-serif;
-  }
+    .node text {
+      font: 12px sans-serif;
+    }
 
-  .link {
-    fill: none;
-    stroke: #ffb19b;
-    stroke-width: 2px;
-  }
-</style>
-
-<div>
+    .link {
+      fill: none;
+      stroke: #ffb19b;
+      stroke-width: 2px;
+    }
+  </style>
   <script>
     var treeData = {
       name: "Works of Vedanta Desika",
@@ -87,15 +86,13 @@
     }
 
     // Set the dimensions and margins of the diagram
-    var margin = { top: 20, right: 90, bottom: 30, left: 150 },
+    var margin = { top: 20, right: 90, bottom: 30, left: 90 },
       width = 960 - margin.left - margin.right,
       height = 700 - margin.top - margin.bottom
 
     // append the svg object to the body of the page
-    // appends a 'group' element to 'svg'
-    // moves the 'group' element to the top left margin
     var svg = d3
-      .select("body")
+      .select("#tree-content")
       .append("svg")
       .attr("width", width + margin.right + margin.left)
       .attr("height", height + margin.top + margin.bottom)
@@ -107,21 +104,21 @@
       root
 
     // declares a tree layout and assigns the size
-    var treemap = d3.tree().size([height, width])
+    var treemap = d3.tree().size([width, height])
 
     // Assigns parent, children, height, depth
     root = d3.hierarchy(treeData, function (d) {
       return d.children
     })
-    root.x0 = height / 2
+    root.x0 = width / 2
     root.y0 = 0
 
     // Collapse after the second level
-    //root.children.forEach(collapse)
+    // root.children.forEach(collapse)
 
     update(root)
 
-    // Collapse the node and all it's children
+    // Collapse the node and all its children
     function collapse(d) {
       if (d.children) {
         d._children = d.children
@@ -140,7 +137,7 @@
 
       // Normalize for fixed-depth.
       nodes.forEach(function (d) {
-        d.y = d.depth * 180
+        d.y = d.depth * 100
       })
 
       // ****************** Nodes section ***************************
@@ -156,7 +153,7 @@
         .append("g")
         .attr("class", "node")
         .attr("transform", function (d) {
-          return "translate(" + source.y0 + "," + source.x0 + ")"
+          return "translate(" + source.x0 + "," + source.y0 + ")"
         })
         .on("click", click)
 
@@ -172,13 +169,9 @@
       // Add labels for the nodes
       nodeEnter
         .append("text")
-        .attr("dy", ".35em")
-        .attr("x", function (d) {
-          return d.children || d._children ? -13 : 13
-        })
-        .attr("text-anchor", function (d) {
-          return d.children || d._children ? "end" : "start"
-        })
+        .attr("dy", "1.75em")
+        .attr("x", 0)
+        .attr("text-anchor", "middle")
         .text(function (d) {
           return d.data.name
         })
@@ -191,7 +184,7 @@
         .transition()
         .duration(duration)
         .attr("transform", function (d) {
-          return "translate(" + d.y + "," + d.x + ")"
+          return "translate(" + d.x + "," + d.y + ")"
         })
 
       // Update the node attributes and style
@@ -209,7 +202,7 @@
         .transition()
         .duration(duration)
         .attr("transform", function (d) {
-          return "translate(" + source.y + "," + source.x + ")"
+          return "translate(" + source.x + "," + source.y + ")"
         })
         .remove()
 
@@ -266,10 +259,10 @@
 
       // Creates a curved (diagonal) path from parent to the child nodes
       function diagonal(s, d) {
-        path = `M ${s.y} ${s.x}
-            C ${(s.y + d.y) / 2} ${s.x},
-              ${(s.y + d.y) / 2} ${d.x},
-              ${d.y} ${d.x}`
+        path = `M ${s.x} ${s.y}
+              C ${(s.x + d.x) / 2} ${s.y},
+                ${(s.x + d.x) / 2} ${d.y},
+                ${d.x} ${d.y}`
 
         return path
       }
