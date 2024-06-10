@@ -1,7 +1,7 @@
 <style>
   .node circle {
-    fill: #fff;
-    stroke: steelblue;
+    fill: #f9856f;
+    stroke: #f54818;
     stroke-width: 3px;
   }
 
@@ -11,13 +11,12 @@
 
   .link {
     fill: none;
-    stroke: #ccc;
+    stroke: #ffb19b;
     stroke-width: 2px;
   }
 </style>
 
 <div>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
   <script>
     var treeData = {
       name: "Works of Vedanta Desika",
@@ -90,7 +89,7 @@
     // Set the dimensions and margins of the diagram
     var margin = { top: 20, right: 90, bottom: 30, left: 150 },
       width = 960 - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom
+      height = 700 - margin.top - margin.bottom
 
     // append the svg object to the body of the page
     // appends a 'group' element to 'svg'
@@ -118,7 +117,7 @@
     root.y0 = 0
 
     // Collapse after the second level
-    root.children.forEach(collapse)
+    //root.children.forEach(collapse)
 
     update(root)
 
@@ -167,7 +166,7 @@
         .attr("class", "node")
         .attr("r", 1e-6)
         .style("fill", function (d) {
-          return d._children ? "lightsteelblue" : "#fff"
+          return d._children ? "#F9856F" : "#FFCDB7"
         })
 
       // Add labels for the nodes
@@ -200,7 +199,7 @@
         .select("circle.node")
         .attr("r", 10)
         .style("fill", function (d) {
-          return d._children ? "lightsteelblue" : "#fff"
+          return d._children ? "#F9856F" : "#FFCDB7"
         })
         .attr("cursor", "pointer")
 
